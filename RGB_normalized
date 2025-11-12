@@ -1,0 +1,63 @@
+def corrigir_balanco_branco(red, green, blue, lux, lux_max):
+    # Normalização da intensidade luminosa
+    lux_normalized = lux / lux_max * 255.0
+
+    # Aplicação da correção de balanço de branco
+    red_corrected = red / lux_normalized
+    green_corrected = green / lux_normalized
+    blue_corrected = blue / lux_normalized
+
+    return red_corrected, green_corrected, blue_corrected
+
+
+dados = [
+    [273, 130, 97, 99],
+    [228, 110, 81, 82],
+    [140, 69, 53, 51],
+    [174, 78, 63, 63],
+    [178, 77, 68, 67],
+    [195, 82, 75, 73],
+    [160, 66, 60, 58],
+    [201, 83, 78, 75],
+    [192, 80, 74, 71],
+    [202, 84, 78, 76],
+    [238, 116, 85, 86],
+    [207, 98, 72, 73],
+    [166, 78, 61, 59],
+    [128, 57, 45, 45],
+    [158, 66, 57, 59],
+    [144, 61, 54, 52],
+    [209, 87, 81, 78],
+    [172, 71, 66, 63],
+    [318, 133, 127, 122],
+    [292, 122, 114, 111],
+    [347, 168, 125, 127],
+    [178, 85, 61, 62],
+    [173, 81, 64, 62],
+    [122, 54, 43, 43],
+    [257, 108, 98, 99],
+    [226, 97, 90, 86],
+    [170, 71, 65, 63],
+    [204, 85, 79, 76],
+    [311, 130, 123, 119],
+    [351, 146, 139, 136]
+]
+
+lux_max = 351  # Valor máximo possível de lux obtido pelo sensor
+
+for i, caso in enumerate(dados):
+    lux = caso[0]
+    red = caso[1]
+    green = caso[2]
+    blue = caso[3]
+
+    red_corrigido, green_corrigido, blue_corrigido = corrigir_balanco_branco(red, green, blue, lux, lux_max)
+
+    print(f"Caso {i+1}:")
+    print(f"Lux: {lux}")
+    print("Valores corrigidos RGB:")
+    print("Red:", red_corrigido)
+    print("Green:", green_corrigido)
+    print("Blue:", blue_corrigido)
+    print()
+
